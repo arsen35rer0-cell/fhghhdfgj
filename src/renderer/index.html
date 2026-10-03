@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="
+      default-src 'self';
+      script-src 'self';
+      style-src 'self' 'unsafe-inline';
+      style-src-attr 'unsafe-inline';
+      img-src 'self' data:;
+      font-src 'self';
+      connect-src 'self';
+      worker-src 'self' blob:;
+    "
+  />
+  <title>Imba Clicker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid"></div>
+  </div>
+
+  <canvas id="fxCanvas"></canvas>
+  <div id="floatingLayer"></div>
+
+  <main class="app">
+    <header class="topbar glass">
+      <div class="brand">
+        <div class="logo">💎</div>
+        <div>
+          <h1>IMBA CLICKER</h1>
+          <p>Красивый кликер с баффами и прокачкой</p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="chip coin-chip">
+          <span class="label">Монеты</span>
+          <strong id="coinsText">0</strong>
+        </div>
+
+        <div class="chip">
+          <span class="label">За клик</span>
+          <strong id="clickPowerText">1</strong>
+        </div>
+
+        <div class="chip">
+          <span class="label">В секунду</span>
+          <strong id="cpsText">0</strong>
+        </div>
+
+        <div class="chip">
+          <span class="label">Крит</span>
+          <strong id="critText">2%</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="layout">
+      <section class="click-panel glass">
+        <div class="click-card">
+          <div id="activeBuffs" class="active-buffs"></div>
+
+          <button id="clickButton" class="click-button" type="button" aria-label="Кликнуть">
+            <span class="click-glow"></span>
+            <span class="click-ring"></span>
+            <span class="click-core">💎</span>
+          </button>
+
+          <div class="click-hints">
+            <div class="hint">ЛКМ — клик</div>
+            <div class="hint">Пробел — тоже клик</div>
+            <div class="hint">Комбо: быстрые клики дают бонус</div>
+          </div>
+        </div>
+
+        <div class="mini-stats">
+          <div class="mini-stat">
+            <span>Всего кликов</span>
+            <strong id="totalClicksText">0</strong>
+          </div>
+
+          <div class="mini-stat">
+            <span>Всего монет</span>
+            <strong id="totalCoinsText">0</strong>
+          </div>
+
+          <div class="mini-stat">
+            <span>Уровень имбы</span>
+            <strong id="imbaLevelText">1</strong>
+          </div>
+        </div>
+      </section>
+
+      <aside class="shop-panel glass">
+        <div class="shop-header">
+          <h2>Магазин</h2>
+
+          <div class="tabs">
+            <button class="tab active" data-tab="upgrades" type="button">Улучшения</button>
+            <button class="tab" data-tab="buffs" type="button">Баффы</button>
+            <button class="tab" data-tab="settings" type="button">Настройки</button>
+          </div>
+        </div>
+
+        <div id="shopContent" class="shop-content"></div>
+      </aside>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
