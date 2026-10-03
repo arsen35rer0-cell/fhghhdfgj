@@ -1,0 +1,40 @@
+{
+  "name": "imba-clicker",
+  "productName": "Imba Clicker",
+  "version": "1.0.0",
+  "description": "Beautiful clicker game with buffs, upgrades and smooth animations",
+  "main": "src/main.js",
+  "author": "Yaroslav",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win nsis portable --x64 --publish never"
+  },
+  "devDependencies": {
+    "electron": "^31.3.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.yaroslav.imbaclicker",
+    "productName": "Imba Clicker",
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  }
+}
